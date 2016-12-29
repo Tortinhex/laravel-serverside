@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
@@ -20,7 +20,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Client::class, function (Faker\Generator $faker) {
+$factory->define(App\Entities\Client::class, function (Faker\Generator $faker) {
     return [
         'name'        => $faker->name,
         'responsible' => $faker->name,
