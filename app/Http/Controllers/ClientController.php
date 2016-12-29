@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Client;
 
 class ClientController extends Controller
 {
@@ -16,7 +17,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return \App\Client::all();
+        return Client::all();
     }
 
     /**
@@ -27,7 +28,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        return \App\Client::create($request->all());
+        return Client::create($request->all());
     }
 
     /**
@@ -38,7 +39,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return \App\Client::find($id);
+        return Client::find($id);
     }
 
     /**
@@ -50,7 +51,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        (\App\Client::find($id))->update($request->all());
+        (Client::find($id))->update($request->all());
     }
 
     /**
@@ -61,6 +62,6 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        \App\Client::find($id)->delete();
+        Client::find($id)->delete();
     }
 }
