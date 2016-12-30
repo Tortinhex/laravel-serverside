@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ClientRepository;
+use App\Services\ClientService;
 
 class ClientController extends Controller
 {
@@ -14,11 +15,17 @@ class ClientController extends Controller
     private $repository;
 
     /**
+     * @var ClientService
+     */
+    private $service;
+
+    /**
      * @author Danilo Dorotheu <danilo.dorotheu@live.com>
      */
-    public function __construct(ClientRepository $repository)
+    public function __construct(ClientRepository $repository, ClientService $service)
     {
         $this->repository = $repository;
+        $this->service    = $service;
     }
 
     /**
@@ -39,7 +46,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->repository->create($request->all());
+        return $this->service->create($request->all());
     }
 
     /**
@@ -62,7 +69,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        ($this->repository->find($id))->update($request->all());
+        return $this->service->update($request->all(), $id);
     }
 
     /**
@@ -73,6 +80,6 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $this->repository->find($id)->delete();
+        return $this->service->delete($id);
     }
 }
