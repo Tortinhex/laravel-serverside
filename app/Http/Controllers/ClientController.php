@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Entities\Client;
+use App\Repositories\ClientRepository;
 
 class ClientController extends Controller
 {
@@ -15,9 +16,9 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ClientRepository $repository)
     {
-        return Client::all();
+        return $repository->all();
     }
 
     /**
