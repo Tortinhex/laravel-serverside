@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class AppRepositoryProvider extends ServiceProvider
+class RepositoryServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -26,6 +26,11 @@ class AppRepositoryProvider extends ServiceProvider
         $this->app->bind(
             \App\Repositories\ClientRepository::class,
             \App\Repositories\ClientRepositoryEloquent::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\ProjectRepository::class,
+            \App\Repositories\ProjectRepositoryEloquent::class
         );
     }
 }
