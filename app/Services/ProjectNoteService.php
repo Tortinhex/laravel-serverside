@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Repositories\ClientRepository;
-use App\Validators\ClientValidator;
+use App\Repositories\ProjectNoteRepository;
+use App\Validators\ProjectNoteValidator;
 use Prettus\Validator\Exceptions\ValidatorException;
 
 class ProjectNoteService

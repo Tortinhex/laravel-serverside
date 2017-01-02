@@ -5,7 +5,7 @@ namespace App\Validators;
 use \Prettus\Validator\Contracts\ValidatorInterface;
 use \Prettus\Validator\LaravelValidator;
 
-class ProjectNoteValidatorValidator extends LaravelValidator
+class ProjectNoteValidator extends LaravelValidator
 {
 
     protected $rules = [
