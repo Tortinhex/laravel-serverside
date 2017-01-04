@@ -22,8 +22,7 @@ class ProjectNoteController extends Controller
     /**
      * @author Danilo Dorotheu <danilo.dorotheu@live.com>
      */
-    public function __construct(ProjectNoteRepository $repository, 
-        ProjectNoteService $service)
+    public function __construct(ProjectNoteRepository $repository, ProjectNoteService $service)
     {
         $this->repository = $repository;
         $this->service    = $service;
