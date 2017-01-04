@@ -16,10 +16,5 @@ class ExampleTest extends TestCase
         $this->visit('/')
              ->see('Laravel 5');
     }
-
-    public function testClient()
-    {
-        $this->visit('/client/1')
-             ->seeJson();
-    }
+    
 }
