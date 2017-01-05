@@ -83,6 +83,6 @@ class ProjectNoteController extends Controller
      */
     public function destroy($id, $noteId)
     {
-        return $this->service->delete($noteId);
+        return $this->service->destroy($noteId);
     }
 }

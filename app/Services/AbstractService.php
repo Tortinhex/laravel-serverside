@@ -67,7 +67,11 @@ class AbstractService
     	try {
 
     		$this->validator->with($data)->passesOrFail();
-    		return $this->repository->create($data);
+    		$result = $this->repository->create($data);
+            return [
+                "success" => true,
+                "data"    => $result
+            ];
 
     	} catch(ValidatorException $e){
     		return [
@@ -94,19 +98,23 @@ class AbstractService
     	try {
 
     		$this->validator->with($data)->passesOrFail();
-    		return $this->repository->update($data, $id);
+    		$result = $this->repository->update($data, $id);
+            return [
+                "success" => true,
+                "data"    => $result
+            ];
 
-    	} catch(ValidatorException $e){
-    		return [
-    			'error'   => true,
-    			'message' => $e->getMessageBag()
-    		];
     	} catch (ModelNotFoundException $e) {
             return [
                 'error'   => true, 
                 'message' => "{$this->name} não encontrado."
             ];
-        } catch(\Exception $e) {
+        } catch(ValidatorException $e){
+    		return [
+    			'error'   => true,
+    			'message' => $e->getMessageBag()
+    		];
+    	}  catch(\Exception $e) {
             return [
                 'error'   => true, 
                 'message' => "Ocorreu algum erro ao atualizar o {$this->name}."
@@ -131,7 +139,7 @@ class AbstractService
         } catch (QueryException $e) {
             return [
                 'error'   => true, 
-                'message' => "{$this->name} Projeto não pode ser apagado pois existe um ou mais clientes vinculados a ele."
+                'message' => "{$this->name} não pode ser apagado pois existe um ou mais clientes vinculados a ele."
             ];
         } catch (ModelNotFoundException $e) {
             return [
