@@ -33,4 +33,21 @@ class ProjectRepositoryEloquent extends BaseRepository implements ProjectReposit
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
+    /**
+     * Verifica se um usuário é dono de um projeto específico
+     * 
+     * @param  [int]  $projectId ID do Projeto
+     * @param  [int]  $userId    ID do Usuário
+     * @return boolean           
+     */
+    public function isOwner($projectId, $userId)
+    {
+        if(count($this->findWhere(['id' => $projectId, 'owner_id' => $userId]))) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
