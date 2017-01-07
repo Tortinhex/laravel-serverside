@@ -34,7 +34,18 @@ abstract class AbstractService
         $this->name       = $name;
     }
 
-    public function checkPermission($id, $action = '')
+    /**
+     * Checa as permissões antes de fazer qualquer ação nas funcoes do CRUD
+     * e deve ser implementada pelos services filhos caso necessite fazer
+     * esta checagem.
+     * OBS: Quando retornar array, significa que não existe permissão para
+     * realizar a ação do CRUD
+     * 
+     * @param  id      $id      ID do objeto a ser verificado
+     * @param  string  $action  Ação CRUD
+     * @return boolean|array 
+     */
+    public function checkPermission(int $id, $action = '')
     {
         return true;
     }
@@ -48,11 +59,11 @@ abstract class AbstractService
     {
         try {
             $resultPermission = $this->checkPermission($id, 'show');
-
-            if(is_bool($resultPermission) and $resultPermission) {
-                return $this->repository->find($id);
+            if(is_array($resultPermission)) {
+                return $resultPermission;
             }
-            return $resultPermission;
+
+            return $this->repository->find($id);
 
         } catch(ModelNotFoundException $e) {
             return [
@@ -75,6 +86,10 @@ abstract class AbstractService
     public function create(array $data)
     {
     	try {
+            $resultPermission = $this->checkPermission($id, 'create');
+            if(is_array($resultPermission)) {
+                return $resultPermission;
+            }
 
     		$this->validator->with($data)->passesOrFail();
     		$result = $this->repository->create($data);
@@ -106,6 +121,10 @@ abstract class AbstractService
     public function update(array $data, $id)
     {
     	try {
+            $resultPermission = $this->checkPermission($id, 'update');
+            if(is_array($resultPermission)) {
+                return $resultPermission;
+            }
 
     		$this->validator->with($data)->passesOrFail();
     		$result = $this->repository->update($data, $id);
@@ -141,6 +160,11 @@ abstract class AbstractService
     public function destroy($id)
     {
         try {
+            $resultPermission = $this->checkPermission($id, 'destroy');
+            if(is_array($resultPermission)) {
+                return $resultPermission;
+            }
+
             $this->repository->find($id)->delete();
             return [
                 'success' => true, 

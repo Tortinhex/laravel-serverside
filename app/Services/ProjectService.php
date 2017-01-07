@@ -21,11 +21,17 @@ class ProjectService extends AbstractService
      * @param  [type] $id [description]
      * @return [type]     [description]
      */
-    public function checkPermission($id, $action = '')
+    public function checkPermission(int $id, $action = '')
     {
+    	// Não é desejado fazer a verificação nessas funcoes CRUD no momento
+    	if('create' == $action or 'destroy' == $action){
+    		return true;
+    	}
+
     	if($this->checkProjectOwner($id) or $this->checkProjectMember($id)) {
             return true;
         }
+
         return [
         	'error'   => true,
         	'message' => "Access forbidden"
