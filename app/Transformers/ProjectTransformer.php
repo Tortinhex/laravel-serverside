@@ -7,6 +7,8 @@ use League\Fractal\TransformerAbstract;
 
 class ProjectTransformer extends TransformerAbstract
 {
+
+	protected $defaultIncludes = ['members'];
 	/**
 	 * Transforma o resultado do JSON do objeto quando enviado à view, no 
 	 * modelo abaixo
@@ -22,7 +24,12 @@ class ProjectTransformer extends TransformerAbstract
 			'description' => $project->description,
 			'progress'    => $project->progress,
 			'status'      => $project->status,
-			'due_date'    => $project->due_date
+			'due_date'    => $project->due_date,
 		];
+	}
+
+	public function includeMembers(Project $project)
+	{
+		return $this->collection($project->members, new ProjectMemberTransformer());
 	}
 }
