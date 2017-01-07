@@ -12,17 +12,17 @@ abstract class AbstractService
 	/**
      * @var ClientRepository
      */
-    private $repository;
+    protected $repository;
 
     /**
      * @var ClientValidator
      */
-    private $validator;
+    protected $validator;
 
     /**
      * Contém o nome da entidade
      */
-    private $name;
+    protected $name;
 
 	/**
      * @author Danilo Dorotheu <danilo.dorotheu@live.com>
@@ -34,6 +34,11 @@ abstract class AbstractService
         $this->name       = $name;
     }
 
+    public function checkPermission($id, $action = '')
+    {
+        return true;
+    }
+
     /**
      * Display the specified resource.
      *
@@ -42,7 +47,12 @@ abstract class AbstractService
     public function show($id)
     {
         try {
-            return $this->repository->find($id);
+            $resultPermission = $this->checkPermission($id, 'show');
+
+            if(is_bool($resultPermission) and $resultPermission) {
+                return $this->repository->find($id);
+            }
+            return $resultPermission;
 
         } catch(ModelNotFoundException $e) {
             return [
