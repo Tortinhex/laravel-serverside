@@ -100,18 +100,36 @@ class ProjectController extends Controller
         return $this->service->destroy($id);
     }
 
+    /**
+     * Verifica se o usuário é owner do $projectId
+     * 
+     * @param  [int]     $projectId ID do projeto a ser verificado
+     * @return [boolean] 
+     */
     public function checkProjectOwner($projectId)
     {
         $userId    = \Authorizer::getResourceOwnerId();
         return $this->repository->isOwner($projectId, $userId);
     }
 
+    /**
+     * Verifica se o usuário é membro do $projectId
+     * 
+     * @param  [int]     $projectId ID do projeto a ser verificado
+     * @return [boolean]       
+     */
     public function checkProjectMember($projectId)
     {
         $userId    = \Authorizer::getResourceOwnerId();
         return $this->repository->hasMember($projectId, $userId);
     }
 
+    /**
+     * Verifica se um usuário possui permissão para acessar o $projectId
+     * 
+     * @param  [int]     $projectId ID do projeto a ser verificado
+     * @return [boolean]           
+     */
     private function checkProjectPermissions($projectId) {
         if($this->checkProjectOwner($projectId) or $this->checkProjectMember($projectId)) {
             return true;

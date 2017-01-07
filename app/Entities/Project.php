@@ -20,14 +20,24 @@ class Project extends Model implements Transformable
     	'due_date'
     ];
 
+    /**
+     * Notas de um projeto
+     * 
+     * @return [array]
+     */
     public function notes()
     {
         return $this->hasMany(ProjectNote::class);
     }
 
+    /**
+     * Retorna os membros do projeto
+     * 
+     * @return [array]
+     */
     public function members()
     {
         return $this->belongsToMany(User::class, 'project_members', 'project_id', 'member_id');
     }
-
+    
 }
