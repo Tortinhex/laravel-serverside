@@ -85,7 +85,7 @@ class ProjectController extends Controller
         return $this->service->destroy($id);
     }
 
-    public function showMembers($id)
+    public function showMember($id)
     {
         $project = $this->service->show($id);
         if($project instanceof App\Entities\Project) {
@@ -93,6 +93,11 @@ class ProjectController extends Controller
         }
 
         return $project->members;
+    }
+
+    public function addMember(ProjectMemberService $projectMemberService, $id)
+    {
+        $projectMemberService->store();
     }
 
 }
