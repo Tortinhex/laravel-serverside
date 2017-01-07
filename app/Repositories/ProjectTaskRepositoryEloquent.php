@@ -9,10 +9,10 @@ use App\Entities\ProjectNote;
 use App\Validators\ProjectNoteValidator;
 
 /**
- * Class ProjectNoteRepositoryEloquent
+ * Class ProjectTaskRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class ProjectNoteRepositoryEloquent extends BaseRepository implements ProjectNoteRepository
+class ProjectTaskRepositoryEloquent extends BaseRepository implements ProjectNoteRepository
 {
     /**
      * Specify Model class name
@@ -21,7 +21,7 @@ class ProjectNoteRepositoryEloquent extends BaseRepository implements ProjectNot
      */
     public function model()
     {
-        return ProjectTask::class;
+        return ProjectNote::class;
     }
 
     

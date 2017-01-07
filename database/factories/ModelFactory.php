@@ -50,3 +50,13 @@ $factory->define(App\Entities\ProjectNote::class, function (Faker\Generator $fak
         'note'        => $faker->paragraph,
     ];
 });
+
+$factory->define(App\Entities\ProjectTask::class, function (Faker\Generator $faker) {
+    return [
+        'project_id'    => rand(1, 10),
+        'name'        => $faker->word,
+        'status'      => rand(1, 3),
+        'due_date'    => $faker->dateTime('now'),
+        'start_date'  => $faker->dateTime('now'),
+    ];
+});
