@@ -6,7 +6,7 @@ use Prettus\Validator\Exceptions\ValidatorException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 
-class AbstractService
+abstract class AbstractService
 {
 
 	/**
