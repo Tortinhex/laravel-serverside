@@ -11,6 +11,6 @@ class ProjectTaskTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Entities\Project::class, 50)->create();
+        factory(\App\Entities\ProjectTask::class, 50)->create();
     }
 }

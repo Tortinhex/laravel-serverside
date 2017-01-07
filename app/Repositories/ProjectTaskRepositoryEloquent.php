@@ -12,7 +12,7 @@ use App\Validators\ProjectNoteValidator;
  * Class ProjectTaskRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class ProjectTaskRepositoryEloquent extends BaseRepository implements ProjectNoteRepository
+class ProjectTaskRepositoryEloquent extends BaseRepository implements ProjectTaskRepository
 {
     /**
      * Specify Model class name

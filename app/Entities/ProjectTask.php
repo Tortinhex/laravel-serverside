@@ -18,4 +18,9 @@ class ProjectTask extends Model implements Transformable
         'start_date',
     ];
 
+    public function project()
+    {
+    	return $this->belongsTo(Project::class);
+    }
+
 }

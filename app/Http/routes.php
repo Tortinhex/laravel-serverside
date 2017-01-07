@@ -31,6 +31,6 @@ Route::group(['middleware' => 'oauth'], function() {
 		Route::put('{id}/note/{noteId}'   , 'ProjectNoteController@update');
 		Route::delete('{id}/note/{noteId}', 'ProjectNoteController@show');
 
-		Route::get('{id}/members', 'ProjectController@showMembers' );
+		Route::get('{id}/members'         , 'ProjectController@showMembers' );
 	});
 });

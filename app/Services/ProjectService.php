@@ -62,6 +62,4 @@ class ProjectService extends AbstractService
         return $this->repository->hasMember($projectId, $userId);
     }
 
-    
-
 }
