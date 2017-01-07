@@ -4,9 +4,9 @@ namespace App\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\ProjectNoteRepository;
-use App\Entities\ProjectNote;
-use App\Validators\ProjectNoteValidator;
+use App\Repositories\ProjectTaskRepository;
+use App\Entities\ProjectTask;
+use App\Validators\ProjectTaskValidator;
 
 /**
  * Class ProjectTaskRepositoryEloquent
@@ -21,7 +21,7 @@ class ProjectTaskRepositoryEloquent extends BaseRepository implements ProjectTas
      */
     public function model()
     {
-        return ProjectNote::class;
+        return ProjectTask::class;
     }
 
     
