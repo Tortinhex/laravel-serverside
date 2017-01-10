@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Repositories\ProjectRepository;
 use App\Validators\ProjectValidator;
+use App\Entities\Project;
 
 class ProjectService extends AbstractService
 {
@@ -18,8 +20,8 @@ class ProjectService extends AbstractService
     /**
      * Checa as permissões 
      * @override
-     * @param  [type] $id [description]
-     * @return [type]     [description]
+     * @param  int    $id ID do registro
+     * @return string     funcao CRUD
      */
     public function checkPermission(int $id, $action = '')
     {
@@ -60,6 +62,25 @@ class ProjectService extends AbstractService
     {
         $userId    = \Authorizer::getResourceOwnerId();
         return $this->repository->hasMember($projectId, $userId);
+    }
+
+    /**
+     * Exibe os membros do projeto
+     * 
+     * @param  int    $id ID do projeto
+     * @return object 
+     */
+    public function showMembers(int $id)
+    {
+        try {
+            return $this->repository->with(['members'])->find($id);
+            
+        } catch(ModelNotFoundException $e) {
+            return [
+                "message" => "ID não encontrado",
+                "error"   => true
+            ];
+        }
     }
 
 }
