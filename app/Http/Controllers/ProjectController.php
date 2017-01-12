@@ -85,19 +85,6 @@ class ProjectController extends Controller
         return $this->service->destroy($id);
     }
 
-    public function showMember($id)
-    {
-        $project = $this->service->show($id);
-        if($project instanceof App\Entities\Project) {
-            return $project->members;
-        }
-
-        return $project->members;
-    }
-
-    public function addMember(ProjectMemberService $projectMemberService, $id)
-    {
-        $projectMemberService->store();
-    }
+    
 
 }
