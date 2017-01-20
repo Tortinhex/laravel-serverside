@@ -35,17 +35,13 @@ abstract class AbstractService
     }
 
     /**
-     * Checa as permissões antes de fazer qualquer ação nas funcoes do CRUD
-     * e deve ser implementada pelos services filhos caso necessite fazer
-     * esta checagem.
-     * OBS: Quando retornar array, significa que não existe permissão para
-     * realizar a ação do CRUD
+     * Verifica as permissões (se existir) para a funcao em $action
      * 
-     * @param  id      $id      ID do objeto a ser verificado
+     * @param  mixed   $data    Parametro a ser verificado
      * @param  string  $action  Ação CRUD
      * @return boolean|array 
      */
-    public function checkPermission(int $id, $action = '')
+    public function checkPermission($param, $action = '')
     {
         return true;
     }
@@ -86,12 +82,12 @@ abstract class AbstractService
     public function create(array $data)
     {
     	try {
-            $resultPermission = $this->checkPermission($id, 'create');
+            $resultPermission = $this->checkPermission($data, 'create');
             if(is_array($resultPermission)) {
                 return $resultPermission;
             }
 
-    		$this->validator->with($data)->passesOrFail();
+            $this->validator->with($data)->passesOrFail();
     		$result = $this->repository->create($data);
             return [
                 "success" => true,

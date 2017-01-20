@@ -15,5 +15,4 @@ class ProjectTaskService extends AbstractService
     {
         parent::__construct($repository, $validator, 'Task');
     }
-
 }

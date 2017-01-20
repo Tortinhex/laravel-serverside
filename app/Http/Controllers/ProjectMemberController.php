@@ -40,15 +40,6 @@ class ProjectMemberController extends Controller
     }
 
     /**
-     * Retorna o servico de Project
-     * @return ProjectService 
-     */
-    public function getProjectService()
-    {
-        return new ProjectService();
-    }
-
-    /**
      * Exibe a listagem de membros de um projeto específico
      * 
      * @param  int    $id ID do projeto

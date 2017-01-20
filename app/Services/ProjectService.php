@@ -18,12 +18,13 @@ class ProjectService extends AbstractService
     }
 
     /**
-     * Checa as permissões 
-     * @override
-     * @param  int    $id ID do registro
-     * @return string     funcao CRUD
+     * Verifica as permissões (se existir) para a funcao em $action
+     * 
+     * @param  mixed   $data    Parametro a ser verificado
+     * @param  string  $action  Ação CRUD
+     * @return boolean|array 
      */
-    public function checkPermission(int $id, $action = '')
+    public function checkPermission($param, $action = '')
     {
     	// Não é desejado fazer a verificação nessas funcoes CRUD no momento
     	if('create' == $action or 'destroy' == $action){

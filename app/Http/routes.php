@@ -31,12 +31,11 @@ Route::group(['middleware' => 'oauth'], function() {
 		Route::put('{id}/note/{noteId}'   , 'ProjectNoteController@update');
 		Route::delete('{id}/task/{taskId}', 'ProjectNoteController@destroy');
 
-		Route::get('{id}/task'			  , 'ProjectTaskController@index');
-		Route::post('{id}/task'			  , 'ProjectTaskController@store');
-		Route::get('{id}/task/{taskId}'   , 'ProjectTaskController@show');
-		Route::put('{id}/task/{taskId}'   , 'ProjectTaskController@update');
-		Route::delete('{id}/task/{taskId}', 'ProjectTaskController@destroy');
-		
+		Route::get('{id}/task'			    , 'ProjectTaskController@index');
+		Route::get('{id}/task/{taskId}'     , 'ProjectTaskController@show');
+		Route::post('{id}/task'		        , 'ProjectTaskController@store');
+		Route::put('{id}/task/{taskId}'     , 'ProjectTaskController@update');
+		Route::delete('{id}/task/{taskId}'  , 'ProjectTaskController@destroy');
 
 		Route::get(   '{id}/members'                , 'ProjectMemberController@index');
 		Route::post(  '{id}/addMember'              , 'ProjectMemberController@create');
