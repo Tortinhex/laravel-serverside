@@ -24,7 +24,7 @@ class ProjectService extends AbstractService
      * @param  string  $action  Ação CRUD
      * @return boolean|array 
      */
-    public function checkPermission($param, $action = '')
+    public function checkPermission($id, $action = '')
     {
     	// Não é desejado fazer a verificação nessas funcoes CRUD no momento
     	if('create' == $action or 'destroy' == $action){
