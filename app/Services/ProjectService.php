@@ -6,15 +6,32 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Repositories\ProjectRepository;
 use App\Validators\ProjectValidator;
 use App\Entities\Project;
+use Illuminate\Contracts\Filesystem\Factory as Storage;
+use Illuminate\Filesystem\Filesystem;
 
 class ProjectService extends AbstractService
 {
+    /**
+     * @var Storage
+     */
+    private $storage;
+
+    /**
+     * @var File
+     */
+    private $file;
+
 	/**
      * @author Danilo Dorotheu <danilo.dorotheu@live.com>
      */
-    public function __construct(ProjectRepository $repository, ProjectValidator $validator)
+    public function __construct(ProjectRepository $repository, 
+                                ProjectValidator $validator,
+                                Filesystem $file,
+                                Storage $storage)
     {
         parent::__construct($repository, $validator, 'Projeto');
+        $this->file    = $file;
+        $this->storage = $storage;
     }
 
     /**
@@ -155,4 +172,10 @@ class ProjectService extends AbstractService
             ];
         }
     }
+
+    public function createFile(array $data)
+    {
+        $this->storage->put($data['name'] . "." . $data['extension'], $this->file->get($data['file']));
+    }
+
 }
