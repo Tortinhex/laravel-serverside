@@ -175,7 +175,10 @@ class ProjectService extends AbstractService
 
     public function createFile(array $data)
     {
-        $this->storage->put($data['name'] . "." . $data['extension'], $this->file->get($data['file']));
+        $project = $this->repository->skipPresenter()->find($data['project_id']);
+        $projectFile = $project->files()->create($data);
+
+        $this->storage->put($projectFile->id . "." . $data['extension'], $this->file->get($data['file']));
     }
 
 }
