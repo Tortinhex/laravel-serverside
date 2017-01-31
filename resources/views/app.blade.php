@@ -6,7 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	@if(Config::get('app.debug'))
+		<link href="{{ asset('build/css/vendor/bootstrap.min.css') }}" rel="stylesheet">
+		<link href="{{ asset('build/css/vendor/bootstrap-theme.min.css') }}" rel="stylesheet">
+	@else
+		<link href="{{ elixir('css/all.css') }}" rel="stylesheet">
+	@endif
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -60,7 +65,17 @@
 	@yield('content')
 
 	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	@if(Config::get('app.debug'))
+		<script src="{{ asset('build/js/vendor/jquery.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('build/js/vendor/angular.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('build/js/vendor/angular-route.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('build/js/vendor/angular-resource.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('build/js/vendor/angular-animate.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('build/js/vendor/angular-messages.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('build/js/vendor/ui-bootstrap.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('build/js/vendor/navbar.min.js') }}" type="text/javascript"></script>
+	@else
+		<script src="{{ elixir('js/all.js') }}" type="text/javascript"></script>
+	@endif
 </body>
 </html>

@@ -12,7 +12,8 @@
         "prettus/laravel-validation": "1.1.*",
         "lucadegasperi/oauth2-server-laravel": "5.0.*@dev",
         "doctrine/dbal": "^2.5",
-        "league/fractal": "^0.14.0"
+        "league/fractal": "^0.14.0",
+        "bestmomo/scafold": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
