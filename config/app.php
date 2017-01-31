@@ -151,7 +151,10 @@ return [
 
         // OAuth2
         LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
-        LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class
+        LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
+
+        // View (app.blade)
+        Bestmomo\Scafold\ScafoldServiceProvider::class,
     ],
 
     /*
